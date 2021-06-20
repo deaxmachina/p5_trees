@@ -4,37 +4,50 @@
 
 let theta; 
 let branchStartPosYs = []
+let THETA = 30;
 
-const NUM_BRANCHES = 200; 
+const NUM_BRANCHES = 330; 
 const RECURSION_FACTOR = 0.66; 
 
+let ang = 0;
+
+function setGradient(c1, c2) {
+  // noprotect
+  noFill();
+  for (var y = 0; y < height; y++) {
+    var inter = map(y, 0, height, 0, 1);
+    var c = lerpColor(c1, c2, inter);
+    stroke(c);
+    line(0, y, width, y);
+  }
+}
 
 function setup() {
-  createCanvas(1200, 700);
-  branchStartPosYs = [
-    Math.floor(random(50, 200)),
-    Math.floor(random(50, 250)),
-    Math.floor(random(50, 250)),
-    Math.floor(random(50, 200)),
-    Math.floor(random(50, 250))
-  ]
+  createCanvas(window.innerWidth, window.innerHeight);
+  THETA = radians(THETA)
 }
 
 function draw() {
-  background("#84a59d")
+  //background("#d8e2dc")
+  c1 = color(254, 197, 187)
+  c2 = color(161, 186, 171);
+  setGradient(c1, c2);
+
   frameRate(30)
   strokeWeight(1)
   stroke(255)
   // pick angle between 0 and some angle corresponding to mouse pos
   // s.t. when we move the mouse up and down the trees 'bloom' 
   // convert it to radians 
-  theta = radians((mouseY / height) * 30); // we need it to be in radians
+  theta = radians((mouseX / width) * 30); // we need it to be in radians
+  push()
+  const tree = new Tree(radians(ang), NUM_BRANCHES, width/2, 50)
+  tree.drawTree()
+  pop() 
 
-  for (let i = 0; i < branchStartPosYs.length; i ++) {
-    push()
-    const tree = new Tree(theta, NUM_BRANCHES, 250*i+100, branchStartPosYs[i])
-    tree.drawTree()
-    pop() 
+  ang += 3;
+  if (radians(ang) > THETA) {
+    ang = degrees(THETA)
   }
 }
 
@@ -70,8 +83,14 @@ class Tree {
       // right branch
       push();
       rotate(this.theta)
-      line(0, 0, 0, -h)
-      translate(0, -h)
+      if (h > 200) {
+        line(0, 0, 0, -h-100)
+        translate(0, -h-100)
+      } else {
+        line(0, 0, 0, -h-1)
+        translate(0, -h-1)
+      }
+
       this.drawBranch(h)
       pop()
       // left branch 
