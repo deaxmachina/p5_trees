@@ -9,9 +9,9 @@ let trees = []
 let THETA = 15;
 const NUM_BRANCHES = 200; 
 const RECURSION_FACTOR = 0.65; 
-const NUM_TREES = 15;
-const FRAME_RATE = 1;
-const TREE_SPACING = 90;
+const NUM_TREES = 25;
+const FRAME_RATE = 3;
+const TREE_SPACING = window.innerWidth/NUM_TREES
 
 let j = 0;
 let ang = 0;
@@ -35,7 +35,7 @@ function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
   for (let i = 0; i < NUM_TREES; i ++) {
     branchStartPosYs.push(
-      Math.floor(random(20*(i%3), 200*(i%3)+50))
+      Math.floor(random(20*(i%3), 200*(i%3)+10))
     )
   }
   THETA = radians(THETA)
