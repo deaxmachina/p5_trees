@@ -4,12 +4,13 @@
 
 let branchStartPosYs = []
 let trees = []
+let maxTreeHeightFactor;
 
 
 let THETA = 15;
-const NUM_BRANCHES = 100; 
+const NUM_BRANCHES = 125; 
 const RECURSION_FACTOR = 0.65; 
-const NUM_TREES = 45;
+const NUM_TREES = 40;
 const FRAME_RATE = 3;
 const TREE_SPACING = window.innerWidth/NUM_TREES - 4
 
@@ -61,11 +62,18 @@ function setGradient(c1, c2) {
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
+  if (window.innerHeight > 600) {
+    maxTreeHeightFactor = window.innerHeight/1000
+  } else {
+    maxTreeHeightFactor = window.innerHeight/2000
+  }
+  
+  console.log(maxTreeHeightFactor)
   for (let i = 0; i < NUM_TREES; i ++) {
     branchStartPosYs.push(
       Math.floor(random(
         20*(i%3)+50, 
-        Math.min(450, 450*(i%3))
+        Math.min(650*maxTreeHeightFactor, 650*(i%3)*maxTreeHeightFactor)
       ))
     )
   }
@@ -95,7 +103,7 @@ function draw() {
     const tree = new Tree(TREE_SPACING*i + TREE_SPACING+60)
     tree.drawTreeTrunk(yGrowthFactor*branchStartPosYs[i])
     //tree.drawBranch(NUM_BRANCHES, radians(max(10, (mouseX / width) * 20))) 
-    tree.drawBranch(NUM_BRANCHES, THETA)
+    tree.drawBranch(NUM_BRANCHES, THETA+radians(random(-5, 5)))
     pop() 
   }
 
@@ -172,7 +180,7 @@ class Tree {
 /// more info button ///
 
 const infoHTML = `
-* Here 1 drawn tree (has 100 branches) = 100 real trees
+* Here 1 drawn tree (has ${NUM_BRANCHES} branches) = ${NUM_BRANCHES} real trees
 <br>
 * The tee is a silver oak. Different trees will give different numbers.  
 <br><br>
