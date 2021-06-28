@@ -106,8 +106,8 @@ canvas {
 
 .more-info.expand .info-list li:before { 
   content: '\1F331'; 
-  margin-left: -20px; 
-  margin-right: 1px; 
+  margin-left: -13px; 
+  margin-right: 0px; 
 } 
 
 .more-info.expand .list-title {

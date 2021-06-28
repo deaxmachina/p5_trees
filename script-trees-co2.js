@@ -10,7 +10,7 @@ let maxTreeHeightFactor;
 let THETA = 15;
 const NUM_BRANCHES = 125; 
 const RECURSION_FACTOR = 0.65; 
-const NUM_TREES = 40;
+const NUM_TREES = 38;
 const FRAME_RATE = 3;
 const TREE_SPACING = window.innerWidth/NUM_TREES - 4
 
@@ -39,14 +39,7 @@ function calculatePpmCo2(numTrees) {
 } 
 
 // checks 
-console.log("co2 for 9300 tree: ", calculatePpmCo2(9300)) 
-// console.log("co2 for 500 tree: ", calculatePpmCo2(500)) 
-// console.log("co2 for 1000 tree: ", calculatePpmCo2(1000)) 
-// console.log("co2 for 2000 tree: ", calculatePpmCo2(2000)) 
-// console.log("co2 for 3000 tree: ", calculatePpmCo2(3000))  
-// console.log("co2 for 4000 tree: ", calculatePpmCo2(4000)) 
-// console.log("co2 for 4500 tree: ", calculatePpmCo2(4500)) 
-
+// console.log("co2 for 9300 tree: ", calculatePpmCo2(9300)) 
 
 
 function setGradient(c1, c2) {
@@ -182,12 +175,12 @@ class Tree {
 const infoHTML = `
 * Here 1 drawn tree (has ${NUM_BRANCHES} branches) = ${NUM_BRANCHES} real trees
 <br>
-* The tee is a silver oak. Different trees will give different numbers.  
+* The tee is a silver oak. Different trees will produce different numbers.  
 <br><br>
 <ul class="info-list">
   <li>
     The current ppm CO<span class="two">2</span> in the air is around 419 
-    – the highest ever (<a href="https://www.co2.earth/daily-co2" target="_blank">source</a>) (note: depends where and when you measure, of course). 
+    (<a href="https://www.co2.earth/daily-co2" target="_blank">source</a>) (note: depends where and when you measure it, of course). 
     Scientists recommend ~350 ppm – this is the number depicted here. 
     Pre-industrial levels were around 280 ppm. 
     Check out this very brief 
@@ -210,9 +203,9 @@ it would take to ‘clear the air’. I hope it gives you something to think abo
 <br><br>
 Code for recursive tree based on Dan Shiffman in the <a href="https://p5js.org/examples/simulate-recursive-tree.html" target="_blank">p5 docs</a>
 <br>
-<a href="https://github.com/deaxmachina/p5_trees/blob/main/Tree_hug.xlsx" target="_blank">Data</a> collection by Rob Hewlett. 🌳
+<a href="https://github.com/deaxmachina/p5_trees/blob/main/Tree_hug.xlsx" target="_blank">Data</a> collection by Rob Hewlett 🌳
 <br>
-Made with 🤍 by Dea. 
+Made with 🤍 by Dea
 `
 const moreInfoContainer = document.querySelector(".more-info")
 moreInfoContainer.addEventListener('click', () => {
